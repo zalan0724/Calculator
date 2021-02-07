@@ -233,3 +233,11 @@ factorialButton.addEventListener('click', () => typing(factorialButton.value));
 equalButton.addEventListener('click', ()=>typing(equalButton.value));
 clearEntryButton.addEventListener('click',clearEntry);
 clearButton.addEventListener('click',clear);
+
+//Theme
+let zalan = document.querySelector('#Zalan');
+let lili = document.querySelector('#Lili');
+let body = document.querySelector('body');
+
+zalan.addEventListener('click', ()=>body.style.backgroundColor='rgb(146, 184, 255)');
+lili.addEventListener('click', ()=>body.style.backgroundColor='rgb(252, 189, 243)');

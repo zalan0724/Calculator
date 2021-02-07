@@ -10,6 +10,23 @@ body{
     background-attachment:fixed;
     animation: gradient 15s ease infinite;
 }
+#theme{
+    position: absolute;
+    top:5px;
+    left:5px;
+}
+button{
+    display: inline-block;
+    width:20px;
+    height: 20px;
+    outline: none;
+}
+#Lili{
+    background-color: rgb(252, 189, 243);
+}
+#Zalan{
+    background-color: rgb(146, 184, 255);
+}
 #container::before{
     content: "";
     position: absolute;
@@ -96,4 +113,13 @@ input:hover{
     background-color: white;
     transform:scale(1.1);
     font-weight: bold;
+}
+footer{
+    display: block;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    font-size: 10pt;
+    color: white;
+    bottom: 0px;
 }
