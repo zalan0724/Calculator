@@ -51,7 +51,8 @@ function factorial(){
     for(let i =1; i<=Number(firstNumber);i++){
         resultTemp*=i;
     }
-    result=resultTemp;
+    if(resultTemp=='Infinity') result = 'Too much';
+    else result=resultTemp;
     factorialSign='!';
     equalSign='=';
     finished = true;
@@ -145,12 +146,13 @@ function makeEqual(){
             result = Math.round(Number(multiply())*1000)/1000;
             break;
         case '/':
-            result = Math.round(Number(divide())*1000)/1000;
+            if(secondNumber=='0') result =':(';
+            else result = Math.round(Number(divide())*1000)/1000;
             break;
         case '%':
             result = Math.round(Number(modulo())*1000)/1000;
+            break;
     }
-    equalButton.removeEventListener('click', ()=>typing(equalButton.value));
     finished = true;
     equalSign = '=';
     updateDisplay();
@@ -194,6 +196,7 @@ function typing(inputValue){
                     canBeFloat = true;
                     canBeEqual = true;
                     isfirstDigit2 = false;
+                    canBeOperator = true;
                 }
                 secondNumber+=inputValue;
             }
@@ -201,7 +204,18 @@ function typing(inputValue){
                 canBeFloat = false;
                 secondNumber+=inputValue;
             }
-            else if(inputValue==='=' && canBeEqual) makeEqual();
+            else if(inputValue==='=' && canBeEqual) {
+                makeEqual();
+            }
+            else if(operators.includes(inputValue) && canBeOperator){
+                makeEqual();
+                let resultBackUp = result;
+                clearEntry();
+                firstNumber = ''+resultBackUp;
+                operatorType = inputValue;
+                isFirstNumber = false; 
+                isfirstDigit1 = false;
+            }
         }
     }
     else if(finished){
@@ -214,12 +228,15 @@ function typing(inputValue){
             firstNumber+=inputValue;
         }
         else if(operators.includes(inputValue)){
+            if(result===':(' || result==='Too much') clearEntry();
+            else {
             let resultBackUp = result;
             clearEntry();
-            firstNumber = resultBackUp;
+            firstNumber = ''+resultBackUp;
             operatorType = inputValue;
             isFirstNumber = false; 
             isfirstDigit1 = false;
+            }
         }
     }
     else console.log('Van baj szatyorral :(');
@@ -233,6 +250,13 @@ factorialButton.addEventListener('click', () => typing(factorialButton.value));
 equalButton.addEventListener('click', ()=>typing(equalButton.value));
 clearEntryButton.addEventListener('click',clearEntry);
 clearButton.addEventListener('click',clear);
+
+window.addEventListener('keyup', (event)=>{
+    if(event.key=='Enter') typing('=');
+    else if(event.ctrlKey && event.key=='Backspace') clearEntry();
+    else if(event.key=='Backspace') clear();
+    else typing(event.key);
+})
 
 //Theme
 let zalan = document.querySelector('#Zalan');
