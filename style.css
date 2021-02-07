@@ -6,26 +6,11 @@
 body{
     text-align: center;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    /*background: linear-gradient(-45deg, #061556, #450887, #0c227f, #590fa3);
-    background-size: 400% 400%;*/
-    background-image: url(background.jpg);
+    background-color: rgb(146, 184, 255);
     background-attachment:fixed;
-    background-size: cover;
     animation: gradient 15s ease infinite;
 }
-/*@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-*/
-#container::after{
+#container::before{
     content: "";
     position: absolute;
     background: inherit;
@@ -86,7 +71,7 @@ span{
 }
 #buttons{
     display:grid;
-    grid-template-columns: repeat(4,auto);
+    grid-template-columns: 87.5px 87.5px 87.5px 87.5px;
     position: absolute;
     width: 350px;
     height: 425px;
